@@ -11,3 +11,6 @@
 - Modifies: store uploaded files on Elgg's filestore and use file entities to store upload related metadata
 - Adds: more charset options
 - Improves: better UI
+
+1.9.0
+- Update deprecated uses of get_metastring_id()
