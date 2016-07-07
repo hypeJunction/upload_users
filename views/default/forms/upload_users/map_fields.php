@@ -63,8 +63,9 @@ foreach ($mapping_options as $md_name => $readable) {
 }
 
 $dbprefix = elgg_get_config('dbprefix');
-$query = "SELECT DISTINCT(md.name_id) FROM {$dbprefix}metadata md
+$query = "SELECT DISTINCT(md.name_id) as name_id, msn.string as metastring FROM {$dbprefix}metadata md
 					JOIN {$dbprefix}entities e ON md.entity_guid = e.guid
+					JOIN {$dbprefix}metastrings msn ON md.name_id = msn.id
 					WHERE e.type = 'user'";
 if (count($not_in)) {
 	$not_in_str = implode(',', $not_in);
@@ -73,7 +74,7 @@ if (count($not_in)) {
 
 $md_names = get_data($query);
 foreach ($md_names as $md_name) {
-	$string = get_metastring($md_name->name_id);
+	$string = $md_name->metastring;
 	if ($string && !is_int($string)) {
 		$extra_mapping_options[$string] = $string;
 	}

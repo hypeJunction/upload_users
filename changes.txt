@@ -14,3 +14,4 @@
 
 1.9.0
 - Update deprecated uses of get_metastring_id()
+- Update deprecated uses of get_metastring()

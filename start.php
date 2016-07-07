@@ -89,13 +89,14 @@ function upload_users_page_handler($page) {
 
 
 			$dbprefix = elgg_get_config('dbprefix');
-			$query = "SELECT DISTINCT(md.name_id) FROM {$dbprefix}metadata md
+			$query = "SELECT DISTINCT(md.name_id) as name_id, msn.string as metastring FROM {$dbprefix}metadata md
 					JOIN {$dbprefix}entities e ON md.entity_guid = e.guid
+					JOIN {$dbprefix}metastrings msn ON msn.id = md.name_id
 					WHERE e.type = 'user'";
 
 			$md_names = get_data($query);
 			foreach ($md_names as $md_name) {
-				$string = get_metastring($md_name->name_id);
+				$string = $md_name->metastring;
 				if ($string && !is_int($string) && !in_array($string, array('name', 'username', 'password', 'email', 'user_upload_role'))) {
 					$md[] = $string;
 				}
