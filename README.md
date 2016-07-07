@@ -1,5 +1,6 @@
-upload_users
-=====================
+CSV User Import
+===============
+![Elgg 1.12](https://img.shields.io/badge/Elgg-1.12.x-orange.svg?style=flat-square)
 
 Generate new Elgg user accounts or update existing user accounts by importing a CSV file.
 
